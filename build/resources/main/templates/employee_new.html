@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" th:href ="@{/style.css}">
+    <meta charset="UTF-8">
+    <title>Новый работник</title>
+</head>
+<body>
+
+<ul class="menu-main">
+    <li><a th:href="@{'/employee'}">Таблица всех сотрудников</a></li>
+    <li><a th:href="@{'/schedule'}">Расписание работы</a></li>
+    <li><a th:href="@{'/employee/new'}">Добавить нового сотрудника</a></li>
+    <li><a th:href="@{'/medExamination'}">Медосмотр</a></li>
+    <li><a th:href="@{'/myaccount'}">Личный кабинет</a></li>
+</ul>
+
+<h1>Анкета сотрудника</h1>
+<h3>Шаг 1</h3>
+<h3>Личные данные</h3>
+
+<form th:method="POST" th:action="@{/employee/new}" th:object="${employee}">
+    <label for="surname">Фамилия: </label>
+    <input type="text" th:field="*{surname}" id="surname"/>
+    <div style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Name Error</div>
+    <br/>
+    <label for="name">Имя: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+    <br/>
+    <label for="middle_name">Отчество: </label>
+    <input type="text" th:field="*{middle_name}" id="middle_name"/>
+    <div style="color:red" th:if="${#fields.hasErrors('middle_name')}" th:errors="*{middle_name}">Name Error</div>
+    <br/>
+    <label for="age">Возраст: </label>
+    <input type="number" th:field="*{age}" id="age"/>
+    <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name Error</div>
+    <br/>
+    <label for="gender">Пол: </label>
+
+    <p><select id="gender" th:field="*{gender}">
+        <option th:value="Ж" th:text="Женщина"> </option>
+        <option th:value="М" th:text="Мужчина"> </option>
+        <option th:value="NA" th:text="NA"> </option>
+
+    </select></p>
+    <div style="color:red" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}">Name Error</div>
+    <br/>
+    <label for="department">Департамент: </label>
+    <input type="text" th:field="*{department}" id="department"/>
+    <div style="color:red" th:if="${#fields.hasErrors('department')}" th:errors="*{department}">Name Error</div>
+    <br/>
+    <label for="position">Позиция: </label>
+    <input type="text" th:field="*{position}" id="position"/>
+    <div style="color:red" th:if="${#fields.hasErrors('position')}" th:errors="*{position}">Name Error</div>
+    <br/>
+    <label for="email">Почта: </label>
+    <input type="text" th:field="*{email}" id="email"/>
+    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</div>
+    <br/>
+    <input type="submit" value="Создать!"/>
+</form>
+
+</body>
+</html>

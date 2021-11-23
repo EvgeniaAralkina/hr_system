@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" th:href ="@{/css/style.css}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:each="about : ${about}">
+    Id: <td th:text="${about.getId()}">id</td>
+    Employee: <td th:text="${about.getEmployee().getName}">id</td>
+    Salary: <td th:text="${about.getSalary()}">id</td>
+    Is ill: <td th:text="${about.getIs_ill()}">name</td>
+    Is leave: <td th:text="${about.getIs_leave()}">ad</td>
+</div>
+
+</body>
+</html>

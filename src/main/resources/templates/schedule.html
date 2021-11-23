@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href ="@{/style.css}">
+    <title>Расписание</title>
+</head>
+<body>
+
+<ul class="menu-main">
+    <li><a th:href="@{'/employee'}">Таблица всех сотрудников</a></li>
+    <li><a th:href="@{'/schedule'}">Расписание работы</a></li>
+    <li><a th:href="@{'/employee/new'}">Добавить нового сотрудника</a></li>
+    <li><a th:href="@{'/medExamination'}">Медосмотр</a></li>
+    <li><a th:href="@{'/myaccount'}">Личный кабинет</a></li>
+</ul>
+
+<div>Выберите тип сортировки таблицы:
+<form th:method="POST" th:action="@{/schedule}" th:object="${employee}">
+    <br><input name="sort" type="radio" value="name">по имени
+    <br><input name="sort" type="radio" value="pos" checked> по должности
+    <br>
+    <div><input type="submit" value="подтвердить"/></div>
+</form>
+</div>
+
+<table >
+    <caption>Расписание</caption>
+    <tr>
+        <th>сотрудник</th>
+        <th>должность</th>
+        <th>понедельник</th>
+        <th>вторник</th>
+        <th>среда</th>
+        <th>четверг</th>
+        <th>пятница</th>
+        <th>суббота</th>
+        <th>воскресенье</th>
+    </tr>
+
+    <tr th:each="sc : ${schedule}">
+
+        <td><a th:href="@{'/schedule/' + ${sc.getEmployee().getId()} + '/edit'}"
+               th:text="${sc.getEmployee().getSurname() + ' ' + sc.getEmployee().getName() + ' ' +
+                sc.getEmployee().getMiddle_name()}"> id</a>
+        </td>
+        <td th:text="${sc.getEmployee().getPosition()}">ad</td>
+        <td th:text="${sc.getMon()}" th:style="${sc.getMon=='Рабочий'} ? 'background:#87ff99' : 'background:#ff8a8a'">ad</td>
+        <td th:text="${sc.getTue()}" th:style="${sc.getTue=='Рабочий'} ? 'background:#87ff99' : 'background:#ff8a8a'">name</td>
+        <td th:text="${sc.getWed()}" th:style="${sc.getWed=='Рабочий'} ? 'background:#87ff99' : 'background:#ff8a8a'">ad</td>
+        <td th:text="${sc.getThu()}" th:style="${sc.getThu=='Рабочий'} ? 'background:#87ff99' : 'background:#ff8a8a'">ad</td>
+        <td th:text="${sc.getFri}" th:style="${sc.getFri=='Рабочий'} ? 'background:#87ff99' : 'background:#ff8a8a'">ad</td>
+        <td th:text="${sc.getSat}" th:style="${sc.getSat=='Рабочий'} ? 'background:#87ff99' : 'background:#ff8a8a'">ad</td>
+        <td th:text="${sc.getSan}" th:style="${sc.getSan=='Рабочий'} ? 'background:#87ff99' : 'background:#ff8a8a'">ad</td>
+    </tr>
+
+    <tr style="background:#d6e7ff">
+        <td colspan="2">Общее кол-во часов</td>
+        <td th:each="t : ${total}">
+            <span th:text="${t}" >ad </span>
+        </td>
+    </tr>
+
+</table>
+
+<div>
+    Для изменения графика работы сотрудника нажмите на его имя
+</div>
+
+</body>
+</html>

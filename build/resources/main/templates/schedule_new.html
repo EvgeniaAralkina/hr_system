@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href ="@{/style.css}">
+    <title>Расписание</title>
+</head>
+<body>
+
+<ul class="menu-main">
+    <li><a th:href="@{'/employee'}">Таблица всех сотрудников</a></li>
+    <li><a th:href="@{'/schedule'}">Расписание работы</a></li>
+    <li><a th:href="@{'/employee/new'}">Добавить нового сотрудника</a></li>
+    <li><a th:href="@{'/medExamination'}">Медосмотр</a></li>
+    <li><a th:href="@{'/myaccount'}">Личный кабинет</a></li>
+</ul>
+
+<h1>Анкета сотрудника</h1>
+<h3>Шаг 3</h3>
+<h3>Рабочие часы</h3>
+
+<form th:method="POST" th:action="@{/schedule/new}" th:object="${schedule}">
+    <input type="hidden" th:field="*{id}" id="id"/>
+
+    <p>
+        <label for="mon">Понедельник: </label>
+        <select id="mon" th:field="*{mon}">
+            <option th:value="Рабочий" th:text="Рабочий"> </option>
+            <option th:value="Выходной" th:text="Выходной"> </option>
+        </select>
+    <div style="color:red" th:if="${#fields.hasErrors('mon')}" th:errors="*{mon}">Name Error</div>
+    </p>
+
+    <p>
+        <label for="tue">Вторник: </label>
+        <select id="tue" th:field="*{tue}">
+            <option th:value="Рабочий" th:text="Рабочий"> </option>
+            <option th:value="Выходной" th:text="Выходной"> </option>
+        </select>
+    <div style="color:red" th:if="${#fields.hasErrors('tue')}" th:errors="*{tue}">Name Error</div>
+    </p>
+
+    <p>
+        <label for="wed">Среда: </label>
+        <select id="wed" th:field="*{wed}">
+            <option th:value="Рабочий" th:text="Рабочий"> </option>
+            <option th:value="Выходной" th:text="Выходной"> </option>
+        </select>
+    <div style="color:red" th:if="${#fields.hasErrors('wed')}" th:errors="*{wed}">Name Error</div>
+    </p>
+
+    <p>
+        <label for="thu">Четверг: </label>
+        <select id="thu" th:field="*{thu}">
+            <option th:value="Рабочий" th:text="Рабочий"> </option>
+            <option th:value="Выходной" th:text="Выходной"> </option>
+        </select>
+    <div style="color:red" th:if="${#fields.hasErrors('thu')}" th:errors="*{thu}">Name Error</div>
+    </p>
+
+    <p>
+        <label for="fri">Пятница: </label>
+        <select id="fri" th:field="*{fri}">
+            <option th:value="Рабочий" th:text="Рабочий"> </option>
+            <option th:value="Выходной" th:text="Выходной"> </option>
+        </select>
+    <div style="color:red" th:if="${#fields.hasErrors('fri')}" th:errors="*{fri}">Name Error</div>
+    </p>
+
+    <p>
+        <label for="sat">Суббота: </label>
+        <select id="sat" th:field="*{sat}">
+            <option th:value="Рабочий" th:text="Рабочий"> </option>
+            <option th:value="Выходной" th:text="Выходной"> </option>
+        </select>
+    <div style="color:red" th:if="${#fields.hasErrors('sat')}" th:errors="*{sat}">Name Error</div>
+    </p>
+
+    <p>
+        <label for="sat">Воскресенье: </label>
+        <select id="san" th:field="*{san}">
+            <option th:value="Рабочий" th:text="Рабочий"> </option>
+            <option th:value="Выходной" th:text="Выходной"> </option>
+        </select>
+    <div style="color:red" th:if="${#fields.hasErrors('san')}" th:errors="*{san}">Name Error</div>
+    </p>
+
+    <input type="submit" value="Create!"/>
+</form>
+
+</body>
+</html>

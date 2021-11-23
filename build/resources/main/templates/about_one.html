@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" th:href ="@{/style.css}">
+    <meta charset="UTF-8">
+    <title>Анкета сотрудника</title>
+</head>
+<body>
+
+<ul class="menu-main">
+    <li><a th:href="@{'/employee'}">Таблица всех сотрудников</a></li>
+    <li><a th:href="@{'/schedule'}">Расписание работы</a></li>
+    <li><a th:href="@{'/employee/new'}">Добавить нового сотрудника</a></li>
+    <li><a th:href="@{'/medExamination'}">Медосмотр</a></li>
+    <li><a th:href="@{'/myaccount'}">Личный кабинет</a></li>
+</ul>
+
+<h1>Анкета сотрудника</h1>
+<h3>Личные данные</h3>
+<p>
+    ФИО: <td th:text="${about.getEmployee().getSurname()}">id</td>
+<td th:text="${about.getEmployee().getName()}">id</td>
+<td th:text="${about.getEmployee().getMiddle_name()}" >id</td>
+    <br>
+    Возраст: <td th:text="${about.getEmployee().getAge()}">ad</td>
+    <br>
+    Пол: <td th:text="${about.getEmployee().getGender()}">ad</td>
+    <br>
+    Адрес эл.почты: <td th:text="${about.getEmployee().getEmail()}">ad</td>
+    <br>
+
+</p>
+<a class="button_link"  th:href="@{'/employee/' + ${about.getEmployee().getId()} + '/edit'}">Изменить</a>
+
+<h3>О сотруднике</h3>
+<p>
+    Департамент: <td th:text="${about.getEmployee().getDepartment()}">ad</td>
+<br>
+    Должность: <td th:text="${about.getEmployee().getPosition()}">ad</td>
+<br>
+    Часовая ставка: <td th:text="${about.getSalary()}">id</td>
+<br>
+    Статус (болеет/в отпустке/активен): <td th:text="${about.getStatus()}">name</td>
+<br>
+    Дата прохождения медосмотра: <td th:text="${data}">name</td>
+<br>
+</p>
+
+<a class="button_link" th:href="@{'/about/' + ${about.getId()} + '/edit' + '?error=no'}">Изменить</a>
+
+<br>
+<br>
+<form th:method="DELETE" th:action="@{/employee/{id}(id=${about.getEmployee().getId()})}">
+    <input class="warning" type="submit" value="Delete"/>
+</form>
+<br>
+
+<a class="button_link"  th:href="@{'/employee/' + ${about.getEmployee().getId()} + '/salary'}">Рассчитать зп.</a>
+
+</body>
+</html>

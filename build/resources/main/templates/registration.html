@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Добавление нового пользователя</title>
+    <link rel="stylesheet" type="text/css" th:href ="@{/style.css}">
+</head>
+<body>
+
+<ul class="menu-main">
+    <li><a th:href="@{'/employee'}">Таблица всех сотрудников</a></li>
+    <li><a th:href="@{'/schedule'}">Расписание работы</a></li>
+    <li><a th:href="@{'/employee/new'}">Добавить нового сотрудника</a></li>
+    <li><a th:href="@{'/medExamination'}">Медосмотр</a></li>
+    <li><a th:href="@{'/myaccount'}">Личный кабинет</a></li>
+</ul>
+
+<div style="color:red" th:if="${message}" th:text="${message}">Name Error</div>
+
+
+<div th:if="${param.error}">
+    Invalid username and password.
+</div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
+<form th:action="@{/admin}" method="post">
+    <div><label> Имя: <input type="text" name="username"/> </label></div>
+    <div><label> Пароль: <input type="password" name="password"/> </label></div>
+    <p><select id="role" name="role">
+        <option th:value="USER" th:text="Пользователь"> </option>
+        <option th:value="ADMIN" th:text="Администратор"> </option>
+
+    </select></p>
+    <div><input type="submit" value="Add new account"/></div>
+</form>
+</body>
+</html>

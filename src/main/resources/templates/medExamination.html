@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>медосмотр</title>
+    <link rel="stylesheet" type="text/css" th:href ="@{/style.css}">
+</head>
+<body>
+
+<ul class="menu-main">
+    <li><a th:href="@{'/employee'}">Таблица всех сотрудников</a></li>
+    <li><a th:href="@{'/schedule'}">Расписание работы</a></li>
+    <li><a th:href="@{'/employee/new'}">Добавить нового сотрудника</a></li>
+    <li><a th:href="@{'/medExamination'}">Медосмотр</a></li>
+    <li><a th:href="@{'/myaccount'}">Личный кабинет</a></li>
+</ul>
+
+<table >
+    <caption>Таблица с датами медосмотра</caption>
+    <tr>
+        <th>ID</th>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Дата медосмотра</th>
+    </tr>
+
+
+
+    <tr th:each="element : ${employes}" th:style="${element.value==1} ? 'background:#f2444f'">
+<!--        <table >-->
+<!--            <tr th:style="${element.key==1} ? 'background:red'" th:each="emp : ${element.value}">-->
+                <td><a th:href="@{'/employee/' + ${element.key.getId()}}" th:text="${element.key.getId()}"> id</a></td>
+                <td th:text="${element.key.getSurname()}">ad</td>
+                <td th:text="${element.key.getName()}">name</td>
+                <td th:text="${element.key.getMiddle_name()}">ad</td>
+                <td th:text="${#dates.format(element.key.getAbout().getMedicalExamination(), 'dd.MM.yyyy')}"></td>
+<!--                <td th:text="${emp.getAbout().getMedicalExamination().format(standardDate, 'dd-MM-yyyy HH:mm')}">ad</td>-->
+<!--            </tr>-->
+<!--        </table>-->
+    </tr>
+
+<!--    </tr>-->
+
+</table>
+<p>Для рассылки писем сотрудникам, которым необходимо пройти медицинский осмотр нажмите на кнопку "Отправить"</p>
+<div style="color:red" th:if="${#message}" th:text="*{message}">Name Error</div>
+<form th:method="POST" th:action="@{/medExamination}">
+    <input type="submit" value="Отправить"/>
+</form>
+
+</body>
+</html>

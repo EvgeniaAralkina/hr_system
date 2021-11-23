@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href ="@{/style.css}">
+    <title>Зарплата</title>
+</head>
+<body>
+
+<ul class="menu-main">
+    <li><a th:href="@{'/employee'}">Таблица всех сотрудников</a></li>
+    <li><a th:href="@{'/schedule'}">Расписание работы</a></li>
+    <li><a th:href="@{'/employee/new'}">Добавить нового сотрудника</a></li>
+    <li><a th:href="@{'/medExamination'}">Медосмотр</a></li>
+    <li><a th:href="@{'/myaccount'}">Личный кабинет</a></li>
+</ul>
+
+<table>
+    <caption>Средние выплаты по сотруднику</caption>
+    <tr>
+        <th>Тип выплаты</th>
+        <th>Выплата</th>
+    </tr>
+    <tr>
+        <td>Зарплата</td>
+        <td th:text="${payments[1]}"></td>
+    </tr>
+    <tr>
+        <td>Пенсионный фонд</td>
+        <td th:text="${payments[2]}"></td>
+    </tr>
+    <tr>
+        <td>Фонд социального страхования</td>
+        <td th:text="${payments[3]}"></td>
+    </tr>
+    <tr>
+        <td>Фонд ОМС</td>
+        <td th:text="${payments[4]}"></td>
+    </tr>
+    <tr style="background:#ff8a8a">
+        <td>Всего</td>
+        <td th:text="${payments[0]}"></td>
+    </tr>
+
+</table>
+
+</body>
+</html>
